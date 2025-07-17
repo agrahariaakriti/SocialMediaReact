@@ -47,6 +47,10 @@ cursor: pointer;
   font-size: larger;
   font-weight: 600;
 }
+.welcom-msg
+{
+  margin: 120px 300px;
+}
 @media screen and (min-width :300px)  and (max-width:600px){
  
 .delete_btn

@@ -18,10 +18,9 @@ const Post = ({ post }) => {
           {post.title}
           <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
             <AiTwotoneLike />
-            {post.reactions}
+            {post.reactions.likes}
           </span>
         </h5>
-        <img src={post.url} className="card-img-top" alt="..." />
         <p className="card-text">{post.body}</p>
         {post.tags.map((tag, index) => (
           <span

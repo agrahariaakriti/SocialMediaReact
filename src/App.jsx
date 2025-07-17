@@ -15,7 +15,6 @@ function App() {
     if (selecteValue === "Home") SetSelectedTab("Home");
     else SetSelectedTab("Post");
   };
-
   return (
     <PostListProvider>
       <div className="app-container">
