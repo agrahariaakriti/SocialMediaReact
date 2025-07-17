@@ -1,0 +1,64 @@
+.app-container
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.right-part
+{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.left-part
+{
+  max-height: 600px;
+}
+
+.post-card
+{
+  margin: 30px 100px;
+}
+
+.post-tag{
+margin: 3px;
+cursor: pointer;
+}
+
+.delete_btn
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  width: 40px;
+  height: 25px ;
+  background-color: rgba(181, 185, 181, 0.611) !important;
+  border: 2px solid rgb(176, 181, 176);
+  margin: 12px 0px 0px 520px;
+}
+.create-post
+{
+  width: 70%;
+  margin-left:15% ;
+  margin-top: 5%;
+  font-size: larger;
+  font-weight: 600;
+}
+@media screen and (min-width :300px)  and (max-width:600px){
+ 
+.delete_btn
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  width: 40px;
+  height: 25px ;
+  background-color: rgba(181, 185, 181, 0.611) !important;
+  border: 2px solid rgb(176, 181, 176);
+  margin: 12px 0px 0px 320px;
+}
+}
