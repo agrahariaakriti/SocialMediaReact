@@ -14,13 +14,21 @@ const Post = ({ post }) => {
       }}
     >
       <div className="card-body">
-        <h5 className="card-title">
-          {post.title}
+        <h1
+          className="card-title"
+          style={{ textDecoration: "underline", margin: "10px 0px 30px 0px" }}
+        >
+          {post.title} :-
           <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
             <AiTwotoneLike />
             {post.reactions.likes}
           </span>
-        </h5>
+        </h1>
+        <img
+          src="src\assets\socialMedia.jpg"
+          className="card-img-top"
+          alt="..."
+        ></img>
         <p className="card-text">{post.body}</p>
         {post.tags.map((tag, index) => (
           <span
