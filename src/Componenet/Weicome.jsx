@@ -1,4 +1,4 @@
-function Welcome({ onGetPostClick }) {
+function Welcome() {
   return (
     <>
       <div
@@ -27,10 +27,6 @@ function Welcome({ onGetPostClick }) {
             <button
               type="button"
               className="btn btn-outline-info btn-lg px-4 me-sm-3 fw-bold"
-              onClick={() => {
-                console.log("heloo in GetPostList Click");
-                onGetPostClick();
-              }}
             >
               Get Post From Server
             </button>

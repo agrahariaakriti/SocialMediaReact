@@ -1,23 +1,19 @@
-import { act, createContext, useReducer } from "react";
+import { createContext, useReducer, useState, useEffect } from "react";
 
 export const PostList = createContext({
   postList: [],
   createPost: () => {},
   deletePost: () => {},
-  addInitialPost: () => {},
 });
 
 // Reducer function declaration
 
 const postListReducerFunction = (currentPostList, action) => {
-  console.log("in the reducer");
-
   let new_Post_List = currentPostList;
   if (action.type === "ADD_POST") {
     new_Post_List = [action.payload, ...currentPostList];
+    console.log(currentPostList);
   } else if (action.type === "DELETE_POST") {
-    console.log("inthe delete post");
-
     new_Post_List = currentPostList.filter(
       (post) => post.id !== action.payload.id
     );
@@ -29,36 +25,24 @@ const postListReducerFunction = (currentPostList, action) => {
 
 // exported context
 const PostListProvider = ({ children }) => {
-  // Reducer Declaration
-
   const [postList, dispatchActionToReducer] = useReducer(
     postListReducerFunction,
     []
   );
 
-  const createPost = (userId, postTitle, postBody, reaction, tag) => {
-    console.log(`${userId} ${postTitle} ${postBody} ${reaction}  ${tag}
-    `);
-    console.log(tag);
+  // Reducer Declaration
+
+  const createPost = (postObj) => {
+    console.log("hello in store===>" + postObj);
 
     const createPostAction = {
       type: "ADD_POST",
-      payload: {
-        id: Date.now(),
-        title: postTitle,
-        body: postBody,
-        reactions: reaction,
-        userId: userId,
-        tags: tag,
-        url: "https://miro.medium.com/v2/resize:fit:1200/1*6Jp3vJWe7VFlFHZ9WhSJng.jpeg",
-      },
+      payload: postObj,
     };
     dispatchActionToReducer(createPostAction);
   };
 
   const deletePost = (id) => {
-    console.log("hello delete post");
-
     const deletePostAction = {
       type: "DELETE_POST",
       payload: { id },
@@ -76,9 +60,29 @@ const PostListProvider = ({ children }) => {
     dispatchActionToReducer(initialPostAction);
   };
 
+  const [laodingInitialState, SetLoadingState] = useState(false);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    const signal = controller.signal;
+
+    SetLoadingState(true);
+    fetch("https://dummyjson.com/posts", { signal })
+      .then((res) => res.json())
+      .then((obj) => {
+        addInitialPost(obj.posts);
+        SetLoadingState(false);
+      });
+  }, []);
+
   return (
     <PostList.Provider
-      value={{ postList, createPost, deletePost, addInitialPost }}
+      value={{
+        postList,
+        createPost,
+        deletePost,
+        laodingInitialState,
+      }}
     >
       {children}
     </PostList.Provider>

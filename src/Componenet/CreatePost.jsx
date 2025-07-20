@@ -16,14 +16,31 @@ const CreatePost = () => {
     const postBody = postBody_Element.current.value;
     const reaction = reaction_Element.current.value;
     const tag = tags_Element.current.value.trim().split(" ");
+
+    fetch("https://dummyjson.com/posts/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        title: postTitle,
+        body: postBody,
+        reactions: reaction,
+        userId: userId,
+        tags: tag,
+        url: "https://miro.medium.com/v2/resize:fit:1200/1*6Jp3vJWe7VFlFHZ9WhSJng.jpeg",
+        /* other post data */
+      }),
+    })
+      .then((res) => res.json())
+      .then((obj) => {
+        // console.log("helo in create post");
+        createPost(obj);
+      });
+
     user_id_Element.current.value = "";
     post_title_Element.current.value = "";
     postBody_Element.current.value = "";
     reaction_Element.current.value = "";
     tags_Element.current.value = [];
-    console.log(`${userId} ${postTitle} ${postBody} ${reaction}  ${tag}
-    `);
-    createPost(userId, postTitle, postBody, reaction, tag);
   };
 
   return (

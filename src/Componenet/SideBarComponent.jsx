@@ -27,7 +27,6 @@ function SideBar({ handleOnClick, selectedTab }) {
             aria-current="page"
             onClick={() => {
               handleOnClick("Home");
-              console.log("hi im click Home");
             }}
           >
             <svg
@@ -47,7 +46,6 @@ function SideBar({ handleOnClick, selectedTab }) {
             className={`nav-link ${selectedTab === "Post" && "active"}`}
             onClick={() => {
               handleOnClick("Post");
-              console.log("hi im click Create Post");
             }}
           >
             <svg
